@@ -1,0 +1,20 @@
+@import 'theme';
+
+@font-face {
+	font-family: 'Comfortaa';
+	unicode-range: U+000-5FF; /* Download only latin glyphs */
+	src: local('Comfortaa'), url('/comfortaa-v28-latin-regular.woff2') format('woff2');
+}
+
+* {
+	box-sizing: border-box;
+}
+
+p {
+	margin: s(1);
+	font-size: v(font-m);
+}
+
+::-moz-focus-inner {
+	border: 0;
+}

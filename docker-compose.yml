@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  nestjs:
+    build: .
+    networks:
+      - internal-net
+    volumes:
+      - nest-react-static:/static
+
+  nginx:
+    depends_on: 
+      - nestjs
+    build: ./nginx
+    ports:
+      - "3000:80"
+    networks:
+      - internal-net
+    volumes:
+      - nest-react-static:/static:ro
+
+
+networks:
+  internal-net:
+
+volumes:
+  nest-react-static:

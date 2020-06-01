@@ -1,0 +1,61 @@
+@import 'scss';
+
+.Switch {
+	margin: s(1);
+	padding: 0 1px 0 0;
+	border: 0;
+	border-radius: 12px;
+	height: 12px;
+	width: 23px;
+	outline: none;
+	cursor: pointer;
+	background: v(clr3);
+	transition: background-color 0.2s;
+
+	&.disabled {
+		opacity: 0.5;
+		cursor: default;
+	}
+
+	position: relative;
+	&Bar {
+		position: absolute;
+		right: -1px;
+		top: 0;
+
+		border-radius: 12px;
+		height: 12px;
+		width: 24px;
+		background: v(clr2);
+
+		transition: width 0.2s, background-color 0.2s;
+		.toggled > & {
+			width: 12px;
+		}
+
+		display: flex;
+		align-items: center;
+	}
+
+	&Point {
+		flex: 0 0 16px;
+		position: relative;
+		right: 2px;
+		height: 16px;
+
+		border-radius: 16px;
+		box-shadow: 0 0 1px 2px v(sclr);
+		background: v(clr1);
+		transition: box-shadow 0.2s ease, background-color 0.2s;
+	}
+
+	&.disabled .SwitchPoint {
+		box-shadow: 0 0 1px 1px v(sclr);
+	}
+
+	@include focused {
+		.SwitchPoint {
+			box-shadow: 0 0 1px 4px v(sclr);
+		}
+	}
+}
