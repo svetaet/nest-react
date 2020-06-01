@@ -1,0 +1,24 @@
+@import 'utils';
+
+// In your app root @extend theme-root;
+%theme-root {
+	// Define default value for each of theme variables
+	--font-s: 12px;
+	--font-m: 16px;
+	--font-l: 24px;
+	--s: 5px;
+	--clr1: #c3bea8;
+	--clr2: #b0ab97;
+	--clr3: #6b675a;
+	--clr4: #47443c;
+	--sclr: #47443c31;
+
+	// Override default theme variables with the &:global(.#{theme-name}) selector
+	&:global(.dark) {
+		--clr1: #22201b;
+		--clr2: #47443c;
+		--clr3: #a79448;
+		--clr4: #c3bea8;
+		--sclr: #63636363;
+}
+}

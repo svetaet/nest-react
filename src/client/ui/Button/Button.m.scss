@@ -1,0 +1,92 @@
+@import 'scss';
+
+.Button {
+	margin: s(1);
+	padding: s(0.6) s(1.3);
+	border: none;
+	outline: none;
+	cursor: pointer;
+	@include shadow(1);
+
+	&Content {
+		position: relative;
+		color: v(clr4);
+		font-size: v(font-m);
+		text-align: start;
+		transition: color 0.1s;
+
+		display: flex;
+		align-items: center;
+	}
+
+	&Icon {
+		margin-right: s(1);
+	}
+
+	position: relative;
+	&Fill {
+		background: v(clr2);
+		transition: background-color $theme-transition-duration;
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		overflow: hidden;
+
+		&:before {
+			content: '';
+			display: block;
+			height: 100%;
+			width: 100%;
+			background: v(clr4);
+
+			transform: translateX(-100%);
+			transition: transform 0.15s;
+		}
+	}
+
+	&Border {
+		width: 100%;
+		position: absolute;
+		left: 0;
+		border-top: solid 2px v(clr4);
+		transform: translateY(0px);
+		opacity: 0;
+		transition: transform 0.3s, opacity 0.3s;
+		pointer-events: none;
+	}
+	&BorderTop {
+		top: 0;
+	}
+	&BorderBottom {
+		bottom: 0;
+	}
+
+	*,
+	*::before {
+		transition-timing-function: cubic-bezier(0.45, 1.12, 0.75, 0.9);
+	}
+	&.disabled {
+		opacity: 0.5;
+		cursor: default;
+	}
+
+	@include focused {
+		.ButtonContent {
+			color: v(clr1);
+		}
+		.ButtonFill:before {
+			transform: translateX(0%);
+		}
+		.ButtonBorder {
+			opacity: 1;
+		}
+		.ButtonBorderTop {
+			transform: translateY(-4px);
+		}
+		.ButtonBorderBottom {
+			transform: translateY(4px);
+		}
+	}
+}

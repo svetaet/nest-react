@@ -1,0 +1,63 @@
+@import './theme';
+
+// SCSS has it's own rgba function which can not be used with the native css vars
+// because it's result has been calculated during scss compilation
+@function native-rgba($var, $opacity) {
+	@return #{'rgba(#{v($var)}, #{$opacity})'};
+}
+
+// Spacing unit variable var(--s) multiplier
+@function s($n: 1) {
+	@if ($n == 0) {
+		@return 0;
+	} @else if ($n == 1) {
+		@return v(s);
+	} @else {
+		@return calc(#{v(s)} * #{$n});
+	}
+}
+
+// Background and text colors combinations (looks)
+$looks: [def alt inb inv];
+@mixin look($look: def, $transition: false) {
+	@if ($transition) {
+		transition: background-color $theme-transition-duration, color $theme-transition-duration;
+	}
+
+	@if ($look == def) {
+		background-color: v(clr1);
+		color: v(clr4);
+	} @else if ($look == alt) {
+		background-color: v(clr2);
+		color: v(clr4);
+	} @else if ($look == inb) {
+		background-color: v(clr3);
+		color: v(clr1);
+	} @else if ($look == inv) {
+		background-color: v(clr4);
+		color: v(clr1);
+	} @else {
+		@error "Wrong $look: #{$look} in @mixin look. Use one of these: #{looks}";
+	}
+}
+
+@mixin shadow($size: 1, $color: v(sclr)) {
+	@if ($size == 0) {
+		box-shadow: 0 0 2px 0px $color;
+	} @else if ($size == 1) {
+		box-shadow: 0 0 2px 2px $color;
+	} @else if ($size == 2) {
+		box-shadow: 0 0 4px 4px $color;
+	} @else {
+		@error "Wrong $size: #{$size} in @mixin shadow.";
+	}
+}
+
+@mixin focused() {
+	&:not(.disabled) {
+		:global(.using-tab) &:focus,
+		&:hover {
+			@content;
+		}
+	}
+}

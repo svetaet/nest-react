@@ -1,0 +1,21 @@
+{
+	"comments": false,
+	"plugins": [
+		"react-hot-loader/babel",
+		"babel-plugin-transform-typescript-metadata",
+		["@babel/plugin-proposal-decorators", { "legacy": true }],
+		["@babel/plugin-proposal-class-properties", { "loose": true }],
+		"@babel/plugin-transform-runtime"
+	],
+	"presets": [
+		["@babel/preset-env", { "useBuiltIns": "usage", "modules": false, "corejs": 3 }],
+		"@babel/preset-react",
+		"@babel/preset-typescript"
+	],
+	"overrides": [
+		{
+			"test": ["./src/server/**/*", "./src/common/**/*"],
+			"presets": [["@babel/preset-env", { "targets": "current node" }]]
+		}
+	]
+}

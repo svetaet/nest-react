@@ -1,0 +1,30 @@
+// Assort names of all theme variables in the following map
+$theme-vars: (
+	font-sizes: [font-s font-m font-l],
+	colors: [clr1 clr2 clr3 clr4 sclr clr1],
+	misc: [s],
+);
+
+/* 
+	Use @function v($var) to have passed variable names validated and wrapped in a native css var() function
+	Usage example:
+	p {
+		color: v(clr1);
+	}
+*/
+@function v($var) {
+	$var-is-invalid: true;
+	@each $list, $vars in $theme-vars {
+		@if (index($vars, $var) != null) {
+			$var-is-invalid: false;
+		}
+	}
+
+	@if ($var-is-invalid) {
+		@error "Wrong $var: #{$var} in v($var)";
+	}
+
+	@return var(--#{$var});
+}
+
+$theme-transition-duration: 0.3s;
