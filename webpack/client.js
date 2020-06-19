@@ -1,5 +1,6 @@
-const { HotModuleReplacementPlugin, HashedModuleIdsPlugin, NamedChunksPlugin } = require('webpack')
+const { HotModuleReplacementPlugin, NamedModulesPlugin, NamedChunksPlugin } = require('webpack')
 const merge = require('webpack-merge')
+const NameAllModulesPlugin = require('name-all-modules-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const { UnusedFilesWebpackPlugin } = require('unused-files-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -45,14 +46,16 @@ const prodConfig = {
 		// Preload font
 		new PreloadWebpackPlugin({ include: 'allAssets', fileBlacklist: [/\.js/, /\.css/] }),
 
-		// Caching
-		new NamedChunksPlugin(chunk => {
-			if (chunk.name) return chunk.name
-			return [...chunk._modules]
-				.map(m => path.relative(m.context, m.userRequest.substring(0, m.userRequest.lastIndexOf('.'))))
-				.join('_')
-		}),
-		new HashedModuleIdsPlugin(),
+		// Long term Caching
+		new NamedModulesPlugin(),
+		new NamedChunksPlugin(
+			chunk =>
+				chunk.name ||
+				[...chunk._modules]
+					.map(m => path.relative(m.context, m.userRequest.substring(0, m.userRequest.lastIndexOf('.'))))
+					.join('_'),
+		),
+		new NameAllModulesPlugin(),
 
 		// Gzip compression
 		new CompressionPlugin({ test: /\.(js|css)$/, deleteOriginalAssets: false }),
