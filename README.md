@@ -25,6 +25,6 @@ yarn dev:server
 
 ### Run in Production mode
 ```shell
-docker-compose up -d
+docker-compose up -d --build
 yarn open:prod
 ```
