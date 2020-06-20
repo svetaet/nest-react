@@ -127,8 +127,8 @@ module.exports = (env, argv) => {
 					},
 					{
 						test: /\.scss$/,
-						include: paths.src,
 						exclude: /\.m\.scss$/,
+						include: paths.src,
 						loader: [styleLoader, 'css-loader', 'sass-loader'],
 					},
 					{
