@@ -15,7 +15,7 @@
 ### Run in Development mode
 Client
 ```shell
-yarn open:dev
+yarn open
 yarn dev:client
 ```
 Server
@@ -25,6 +25,6 @@ yarn dev:server
 
 ### Run in Production mode
 ```shell
-docker-compose up -d --build
-yarn open:prod
+yarn up
+yarn open
 ```
