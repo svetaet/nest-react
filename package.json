@@ -4,7 +4,8 @@
 	"license": "MIT",
 	"browserslist": "> 0.5% in alt-EU, > 0.5% in alt-NA, > 0.5% in RU, not ie > 0, not chrome 49, not edge 18",
 	"scripts": {
-		"open": "start http://localhost:3000",
+		"open:dev": "start http://localhost:3001",
+		"open:prod": "start http://localhost:3000",
 		"run": "node dist/server/main",
 		"up": "docker-compose up -d --build",
 		"dev:client": "webpack-dev-server --mode=development --config webpack/client.js",
@@ -18,8 +19,7 @@
 		"test": "jest",
 		"test:cov": "jest --coverage",
 		"test:e2e": "jest --config ./test/jest-e2e.json",
-		"update": "yarn upgrade-interactive --latest",
-		"nec": "nectar"
+		"update": "yarn upgrade-interactive --latest"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.10.3",
