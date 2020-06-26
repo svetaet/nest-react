@@ -15,7 +15,7 @@
 ### Run in Development mode
 Client
 ```shell
-yarn open
+yarn open:dev
 yarn dev:client
 ```
 Server
@@ -26,5 +26,5 @@ yarn dev:server
 ### Run in Production mode
 ```shell
 yarn up
-yarn open
+yarn open:prod
 ```
