@@ -89,7 +89,7 @@
 		"@nestjs/platform-fastify": "^7.2.0",
 		"class-transformer": "^0.2.3",
 		"class-validator": "^0.12.2",
-		"fastify": "^2.15.0",
+		"fastify": "^2.15.1",
 		"reflect-metadata": "^0.1.13",
 		"rxjs": "^6.5.5"
 	},
